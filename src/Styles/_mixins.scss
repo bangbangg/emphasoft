@@ -1,0 +1,40 @@
+@mixin auth($disp, $wdt, $hgh, $bg, $mgn, $br) {
+  display: $disp;
+  width: $wdt;
+  height: $hgh;
+  background: $bg;
+  margin: $mgn;
+  border-radius: $br;
+}
+
+@mixin BgBbBt($bg, $bb, $br) {
+  background: $bg;
+  border-bottom: $bb;
+  border-radius: $br;
+}
+
+@mixin WdthBr($wd, $br) {
+  width: $wd;
+  border: $br;
+}
+
+@mixin DsAiFd($ds, $ai, $fd) {
+  display: $ds;
+  align-items: $ai;
+  flex-direction: $fd;
+}
+
+@mixin PosWdHg($pos, $wdt, $hgh, $zi) {
+  position: $pos;
+  width: $wdt;
+  height: $hgh;
+  z-index: $zi;
+}
+
+@mixin MwMhFz($Mw, $Mh, $Fz) {
+  max-width: $Mw;
+  max-height: $Mh;
+  font-size: $Fz;
+}
+
+$font : 'Amatic SC', cursive;

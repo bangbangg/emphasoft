@@ -1,0 +1,49 @@
+@import '../../Styles/media';
+@import '../../Styles/mixins';
+
+.stndrt {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border:3px;
+  height: 100%;
+}
+.users_List {
+  @include DsAiFd(flex, center, row);
+  padding-top: 90px;
+  margin: 0 auto;
+  max-width: 1100px;
+  max-height: 100vh;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  z-index: 10;
+
+  @include _1200{
+    max-width: 1000px;
+  }
+  @include _992{
+    max-width: 850px;
+  }
+  @include _767{
+    max-width: none;
+  }
+
+  .aditional{
+    width:350px;
+    min-height:260px;
+    margin:0 auto;
+    &:hover {
+      border: 3px solid rgb(40, 204, 40) !important;
+    }
+
+    @include _1200{
+      width: 330px;
+    }
+    @include _992{
+      width: 300px;
+    }
+    @include _767{
+      width: 250px;
+    }
+  }
+}

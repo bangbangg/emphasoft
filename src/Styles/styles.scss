@@ -1,0 +1,34 @@
+@import '../Pages/AuthPage/AuthPage';
+@import '../Components/Alert/alert';
+@import '../Pages/main/main';
+@import '../Components/NavBar/Navbar';
+@import './mixins';
+@import '../Pages/Second/second.scss';
+@import '../Components/AditionalBtn/AditionalBtn';
+@import '../Components/Modal/modal';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 3px;
+}
+.appContainer{
+  position: relative;
+  width:100%;
+  height: 100%;
+}
+
+
+.backGround {
+  box-sizing: border-box;
+  width:100vw;
+  height: 100vh;
+  background-image: url(../Images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family:'Open Sans', Arial, sans-serif;
+  font-size: 1em;
+  border:3px;
+}
