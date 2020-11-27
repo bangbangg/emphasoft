@@ -37,7 +37,10 @@ const  dispatch = useDispatch();
                 Никнейм:  {userName}
               </div>
               <div className="modal_info_name">
-                Имя:  {firstName} Фамилия:  {lastName}
+                Имя:  {firstName}
+              </div>
+              <div className="modal_info_name">
+                Фамилия:  {lastName}
               </div>
             </div>
           </div>

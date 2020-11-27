@@ -34,6 +34,8 @@
       @include PosWdHg(relative, 600px, 300px, 30);
       background-color: #fff;
       color: black;
+      box-shadow:inset 0 0 5px;
+      border-radius: 15px;
 
       @include _1200{
         width:550px;
@@ -51,8 +53,9 @@
       .popup_content_header{
         height:50px;
         width:100%;
-        background-color: rgb(54, 135, 211);
-        border-bottom: 2px black solid;
+        background-color: rgb(102, 110, 119);
+        border-bottom: 3px black solid;
+        border-radius:15px 15px 0 0;
 
         .popup_close {
           position: absolute;
@@ -88,7 +91,6 @@
             width:100%;
             font-size: 24px;
             font-family: $font;
-            border-bottom: 1px solid #000;
             margin-bottom: 10px;
             @include _1200{
               font-size: 23px;
@@ -105,7 +107,6 @@
             width:100%;
             font-size: 18px;
             font-family: $font;
-            border-bottom: 1px solid #000;
             @include _1200{
               font-size: 17px;
             }

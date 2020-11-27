@@ -4,7 +4,6 @@ Username: test_super
 Password: Nf<U4f<rDbtDxAPn
 
 Адрес хостинга : http://u96064.test-handyhost.ru/Home
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

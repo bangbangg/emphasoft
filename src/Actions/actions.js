@@ -108,18 +108,17 @@ export function setModal(modal) {
 
 export function newUser(login,password,name,lastname) {
   return async(dispatch) => {
-    if (name.length < 1 || name.length > 30) {
-      dispatch(addAlert('Имя должно быть не менее 1 и не более 30 символов'));
-    } else if (lastname.length < 1 || lastname.length > 150) {
-      dispatch(addAlert('Фамилия должна быть не менее 1 и не более 150 символов'));
-    } else if (login.length < 1  || login.length > 150){
-      dispatch(addAlert('Логин должен быть не менее 1 и не более 150 символов'));
-    } else if (!login.match(/^[\w.@+-]+$/)){
-      dispatch(addAlert('Логин не должен содержать символы , кроме @ . + - _ и русские буквы'));
-    } else if (password.length < 1 || password.length > 128) {
-      dispatch(addAlert('Пароль должен содержать от 8 до 128 символов'));
-    } else if (!password.match(/^(?=.*[A-Z])(?=.*\d).{8,}$/)) {
-      dispatch(addAlert('Пароль должен содержать как минимум 1 заглавную букву и 1 цифру и быть не короче 8 и не длиннее 128 символов'));
+    if (name.length <1 || lastname.length<1 || login.length<1 || password.length < 1) {
+      dispatch(addAlert('Поля не должны быть пустыми'));
+    } else if (
+      name.length > 30 ||
+      lastname.length > 150 ||
+      login.length > 150 ||
+      !login.match(/^[\w.@+-]+$/) ||
+      password.length > 128 ||
+      !password.match(/^(?=.*[A-Z])(?=.*\d).{8,}$/)
+      ) {
+      dispatch(addAlert('Поля заполнены некорректно. Обратите внимание на ошибки'));
     } else {
       dispatch(addAlert('Пользователь успешно создан!'));
       const response = await fetch(`${apiRoot}/api/v1/users/`, {

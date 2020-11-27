@@ -38,7 +38,7 @@ export const Second = () => {
         {sortedUsers.map((user) => {
           return (
             <div
-              className="card text-white bg-secondary border-primary mb-3 aditional"
+              className="card text-dark border-info mb-3 aditional"
               key={user.id}
               onClick={() => {
                 setModalUser(user);
@@ -49,7 +49,7 @@ export const Second = () => {
                 username: {user.username} ID {user.id}
               </div>
               <div className="card-body">
-                <h5 className="card-title">
+                <h5 className="card-title ">
                   {`${user.is_superuser ? 'Пользователь(premium):' : 'Пользователь:'}`} <br/>
                   {user.first_name} {user.last_name}
                 </h5>
