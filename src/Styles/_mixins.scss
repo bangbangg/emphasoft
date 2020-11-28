@@ -37,4 +37,12 @@
   font-size: $Fz;
 }
 
+@mixin WdHgPtFz($wd, $hg, $pt, $fz){
+  width: $wd;
+  height: $hg;
+  padding-top: $pt;
+  font-size: $fz;
+
+}
+
 $font : 'Amatic SC', cursive;

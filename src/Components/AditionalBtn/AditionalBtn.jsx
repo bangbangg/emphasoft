@@ -12,6 +12,7 @@ export const AditionalBtn = () => {
 
   return (
     <div className="addButtons">
+      <div className="buttonsRow">
       <button
         type="button"
         className="btn btn-primary active mgn mw"
@@ -32,7 +33,8 @@ export const AditionalBtn = () => {
       >
         соритровать по ID (max  min)
       </button>
-
+      </div>
+      <div className="inputRow">
       <form className="form-inline my-2 my-lg-0">
         <input
           className="form-control mr-sm-2 mwForm"
@@ -59,6 +61,7 @@ export const AditionalBtn = () => {
           Поиск
         </button>
       </form>
+      </div>
     </div>
   );
 };

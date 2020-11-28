@@ -31,29 +31,27 @@
   }
 
   .adaptive_form {
-    max-width: 700px;
-    max-height: 600px;
+    @include MwMhFz(700px, 600px, 15px);
     margin-bottom: 40px;
-    font-size: 15px;
-    padding: 0 10px;
+    padding:0 10px;
 
     @include _1200{
-      font-size: 14px;
-      max-width: 650px;
-      max-height: 550px;
+      @include MwMhFz(650px, 550px, 14px);
       margin-bottom: 35px;
     }
     @include _992{
-      font-size: 13px;
-      max-width: 550px;
-      max-height: 450px;
+      @include MwMhFz(550px, 450px, 13px);
       margin-bottom: 30px;
     }
     @include _767{
-      font-size: 12px;
-      max-width: 450px;
-      max-height: 400px;
+      @include MwMhFz(430px, 400px, 12px);
       margin-bottom: 25px;
+    }
+    @include _450{
+      @include MwMhFz(330px, 400px,12px);
+    }
+    @include _350{
+      @include MwMhFz(260px, 400px,12px);
     }
   }
 

@@ -35,6 +35,9 @@ export const Second = () => {
       }
       <ul className="users_List">
         <AditionalBtn />
+        {!sortedUsers.length &&
+          <div className="noResults">К сожаланию, ничего не найдено</div>
+        }
         {sortedUsers.map((user) => {
           return (
             <div

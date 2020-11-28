@@ -27,7 +27,25 @@
   @include _767{
     max-width: none;
   }
+  .noResults {
+    @include WdHgPtFz(500px, 400px, 120px, 30px);
+    margin: 50px auto;
+    background-image: url(../Images/smile-bad.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
 
+    @include _1200{
+      @include WdHgPtFz(400px, 300px, 110px, 28px);
+    }
+    @include _992{
+      @include WdHgPtFz(350px, 250px, 90px, 25px);
+    }
+    @include _767{
+      @include WdHgPtFz(300px, 200px, 70px, 20px);
+    }
+  }
   .aditional{
     width:350px;
     min-height:260px;
