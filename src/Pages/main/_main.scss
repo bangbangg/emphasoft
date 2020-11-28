@@ -62,7 +62,11 @@
   .bottom {
     margin-bottom: 40px;
   }
-
+  .small{
+    @include _350{
+      font-size: 8px;
+    }
+  }
 }
 
 .alertTextRed {
