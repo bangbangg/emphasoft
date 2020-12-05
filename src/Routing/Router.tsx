@@ -6,7 +6,8 @@ import { Main } from '../Pages/main/Main';
 import { Second } from '../Pages/Second/Second';
 import { NavBar } from '../Components/Navbar/NavBar';
 
-export const router = (isAuthorized) => {
+
+export const router = (isAuthorized:boolean) => {
   if (!isAuthorized) {
     return (
       <Router>

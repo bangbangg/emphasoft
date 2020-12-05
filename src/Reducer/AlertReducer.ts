@@ -2,12 +2,15 @@ import {
   SHOW_ALERT, HIDE_ALERT, ALERT_STATUS, DELETE_ALERT,
 } from '../Actions/types';
 
-const initialState = {
+import { IAlert } from '../typesTS/storeTypes';
+import { AlertActionTypes } from '../Actions/actionsTypes';
+
+const initialState:IAlert = {
   Alert: false,
   alertStatus: '',
 };
 
-export const alertReducer = (state = initialState, action) => {
+export const alertReducer = (state = initialState, action:AlertActionTypes):IAlert => {
 
   switch (action.type) {
     case SHOW_ALERT:

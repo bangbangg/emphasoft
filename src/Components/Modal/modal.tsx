@@ -3,17 +3,25 @@ import { useDispatch } from 'react-redux';
 
 import { setModal } from '../../Actions/actions';
 
-export const Modal = ({userName, lastName, firstName}) => {
+interface IModalProps {
+  userName: string,
+  lastName: string,
+  firstName: string,
+}
+
+export const Modal:React.FC<IModalProps> = ({userName, lastName, firstName}) => {
 const  dispatch = useDispatch();
+
+const ModalHandler = (event: React.MouseEvent) => {
+  if((event.target as Element).className ==="popup_body") {
+    dispatch(setModal(false));
+  };
+}
 
   return (
     <div
       className="popup"
-        onClick={(ev) => {
-          if(ev.target.className==="popup_body") {
-            dispatch(setModal())
-          };
-        }}
+      onClick={ModalHandler}
     >
       <div
         className="popup_bg"

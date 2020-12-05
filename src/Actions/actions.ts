@@ -2,20 +2,77 @@ import {
   HIDE_ALERT, SHOW_ALERT, LOGIN, LOGOUT, ALERT_STATUS,
   DELETE_ALERT, USERS_LIST, SORTED_USERS, MODAL
 } from './types';
+import { Dispatch } from 'redux';
 
-const apiRoot = 'http://emphasoft-test-assignment.herokuapp.com';
+import { AlertActionTypes, AppActionTypes, Modal } from './actionsTypes';
+import { IResponce } from '../typesTS/storeTypes';
 
-export function hideAlert() {
+const apiRoot:string = 'http://emphasoft-test-assignment.herokuapp.com';
+
+export function hideAlert():AlertActionTypes {
   return {
     type: HIDE_ALERT,
   };
 }
 
+export function Alert():AlertActionTypes {
+  return {
+    type: SHOW_ALERT,
+  };
+}
+
+export function deleteAlert():AlertActionTypes {
+  return {
+    type: DELETE_ALERT,
+  };
+}
+
+export function textAlert(text: string):AlertActionTypes  {
+  return {
+    type: ALERT_STATUS,
+    alert: text,
+  };
+}
+
+export function logoutUser():AppActionTypes{
+  return {
+    type: LOGOUT,
+  };
+};
+
+export function sortUsers(users:IResponce[]):AppActionTypes{
+  return {
+    type: SORTED_USERS,
+    sortUsers: users,
+  };
+}
+
+export function listOfUsers(users:IResponce[]):AppActionTypes {
+  return {
+    type: USERS_LIST,
+    users: users,
+  }
+}
+
+export function loginUser(token: string):AppActionTypes {
+  return {
+    type: LOGIN,
+    token: token
+  }
+}
+
+export function setModal(modal:boolean):Modal {
+  return {
+    type: MODAL,
+    modal:modal,
+  };
+}
+
+
+
 export function showAlert() {
-  return (dispatch) => {
-    dispatch({
-      type: SHOW_ALERT,
-    });
+  return (dispatch: Dispatch<AlertActionTypes>) => {
+    dispatch(Alert());
 
     setTimeout(() => {
       dispatch(hideAlert());
@@ -23,44 +80,34 @@ export function showAlert() {
   };
 }
 
-export function deleteAlert() {
-  return {
-    type: DELETE_ALERT,
-  };
-}
-
-export function addAlert(text) {
-  return (dispatch) => {
-    dispatch({
-      type: ALERT_STATUS,
-      alert: text,
-    });
+export function addAlert(text:string) {
+  return (dispatch: Dispatch<AlertActionTypes>) => {
+    dispatch(textAlert(text));
 
     setTimeout(() => {
-      dispatch(deleteAlert());
+      dispatch (deleteAlert());
     }, 2000);
   };
 }
 
-export const getUsers = () => {
-  return async (dispatch) => {
+
+
+export const getUsers = (token:string) => {
+  return async (dispatch: Dispatch<AppActionTypes>) => {
     const response = await fetch(`${apiRoot}/api/v1/users/`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
-        Authorization: `Token ${JSON.parse(localStorage.getItem('token'))}`,
+        Authorization: `Token ${token}`,
       },
     });
-    const users = await response.json();
-    dispatch({
-      type: USERS_LIST,
-      users: users,
-    });
+    const users:IResponce[] = await response.json();
+    dispatch(listOfUsers(users));
   };
 };
 
-export const userAuth = (login, password) => {
-  return async (dispatch) => {
+export const userAuth = (login:string, password:string) => {
+  return async (dispatch: Dispatch<any>) => {
     const response = await fetch(`${apiRoot}/api-token-auth/`, {
       method: 'POST',
       headers: {
@@ -73,11 +120,11 @@ export const userAuth = (login, password) => {
       }),
     });
     const res = await response.json();
-
-    if (res.token) {
-      dispatch({ type: LOGIN, token: res.token });
+    const token:string = res.token;
+    if (token) {
+      dispatch(loginUser(token));
       localStorage.setItem('token', JSON.stringify(res.token));
-      dispatch(getUsers());
+      dispatch(getUsers(token));
     } else if (!!login.length && !!password.length) {
       dispatch(addAlert('Вы ввели неверную пару логин/пароль'));
     } else {
@@ -86,28 +133,8 @@ export const userAuth = (login, password) => {
   };
 };
 
-export const logoutUser = () => {
-  return {
-    type: LOGOUT,
-  };
-};
-
-export function sortUsers(users) {
-  return {
-    type: SORTED_USERS,
-    sortUsers: users,
-  };
-}
-
-export function setModal(modal) {
-  return {
-    type: MODAL,
-    modal:modal,
-  };
-}
-
-export function newUser(login,password,name,lastname) {
-  return async(dispatch) => {
+export function newUser(login:string,password:string,name:string,lastname:string, token:string) {
+  return async(dispatch: Dispatch<any>) => {
     if (name.length <1 || lastname.length<1 || login.length<1 || password.length < 1) {
       dispatch(addAlert('Поля не должны быть пустыми'));
     } else if (
@@ -125,7 +152,7 @@ export function newUser(login,password,name,lastname) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Token ${JSON.parse(localStorage.getItem('token'))}`,
+          'Authorization': `Token ${token}`,
         },
         body: JSON.stringify({
           username: login,
@@ -137,7 +164,8 @@ export function newUser(login,password,name,lastname) {
       });
       const res = await response.json();
       if(res.username) {
-        dispatch(getUsers());
+        dispatch(getUsers(token));
+        dispatch(addAlert('Пользователь успешно создан!'));
       }
     }
   };

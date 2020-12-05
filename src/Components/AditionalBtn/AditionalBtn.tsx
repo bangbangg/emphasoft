@@ -2,13 +2,43 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { sortUsers } from '../../Actions/actions';
+import { IApp, stateType } from '../../typesTS/storeTypes';
 
 export const AditionalBtn = () => {
   const dispatch = useDispatch();
-  const sortedUsers = useSelector((state) => state.app.sorted);
-  const users = useSelector((state) => state.app.users);
 
-  const [search, setSearch] = useState('');
+  const { sorted } = useSelector(
+    ({app}:stateType<IApp>) => app
+  );
+
+  const { users } = useSelector(
+    ({app}:stateType<IApp>) => app
+  );
+
+  const [search, setSearch] = useState<string>("");
+
+  const sortMin = () => {
+    dispatch(sortUsers(sorted.sort((a, b) => a.id > b.id ? 1 : -1)));
+    window.location.reload();
+  }
+
+  const sortMax = () => {
+    dispatch(sortUsers(sorted.sort((a, b) => a.id > b.id ? -1 : 1)));
+    window.location.reload();
+  }
+
+  const searchUsers = (event: React.MouseEvent) => {
+    event.preventDefault();
+    dispatch(
+      sortUsers(users.filter((item) =>
+        (item.username.toLowerCase().includes(search.toLowerCase())))),
+    );
+    window.location.reload();
+  }
+
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value)
+  }
 
   return (
     <div className="addButtons">
@@ -16,20 +46,14 @@ export const AditionalBtn = () => {
         <button
           type="button"
           className="btn btn-primary active mgn mw"
-          onClick={() => {
-            dispatch(sortUsers(sortedUsers.sort((a, b) => a.id > b.id ? 1 : -1)));
-            window.location.reload();
-          }}
+          onClick={sortMin}
         >
           соритровать по ID( min  max)
         </button>
         <button
           type="button"
           className="btn btn-primary active mgn mw"
-          onClick={() => {
-            dispatch(sortUsers(sortedUsers.sort((a, b) => a.id > b.id ? -1 : 1)));
-            window.location.reload();
-          }}
+          onClick={sortMax}
         >
           соритровать по ID (max  min)
         </button>
@@ -42,21 +66,12 @@ export const AditionalBtn = () => {
             placeholder="Поиск"
             aria-label="Search"
             value={search}
-            onChange={(ev) => {
-              setSearch(ev.target.value);
-            }}
+            onChange={changeHandler}
           />
           <button
             className="btn btn-outline-success my-2 my-sm-0 mwForm"
             type="button"
-            onClick={(ev) => {
-              ev.preventDefault();
-              dispatch(
-                sortUsers(users.filter((item) =>
-                  (item.username.toLowerCase().includes(search.toLowerCase())))),
-              );
-              window.location.reload();
-            }}
+            onClick={searchUsers}
           >
             Поиск
           </button>

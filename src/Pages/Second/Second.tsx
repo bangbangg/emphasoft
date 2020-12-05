@@ -5,13 +5,22 @@ import { AditionalBtn } from '../../Components/AditionalBtn/AditionalBtn';
 import { setModal } from '../../Actions/actions';
 import { Modal } from '../../Components/Modal/modal';
 
+import { IApp, stateType, IModal, IResponce } from '../../typesTS/storeTypes';
+
+
 export const Second = () => {
-  const [modalUser, setModalUser] = useState('');
+
+  const [modalUser, setModalUser] = useState<IResponce | null>(null);
 
   const dispatch = useDispatch();
 
-  const sortedUsers = useSelector((state) => state.app.sorted);
-  const modal = useSelector((state) => state.modal.modal);
+  const { sorted } = useSelector(
+    ({app}:stateType<IApp>) => app
+  );
+
+  const { modal } = useSelector(
+    ({modal}:stateType<IModal>) => modal
+  );
 
   const toggle = !modal;
 
@@ -27,7 +36,7 @@ export const Second = () => {
 
   return (
     <div className="stndrt">
-      {modal && <Modal
+      {modal && modalUser && <Modal
         userName={modalUser.username}
         lastName={modalUser.last_name}
         firstName={modalUser.first_name}
@@ -35,10 +44,10 @@ export const Second = () => {
       }
       <ul className="users_List">
         <AditionalBtn />
-        {!sortedUsers.length &&
+        {!sorted.length &&
           <div className="noResults">К сожаланию, ничего не найдено</div>
         }
-        {sortedUsers.map((user) => {
+        {sorted.map((user) => {
           return (
             <div
               className="card text-dark border-info mb-3 aditional"
@@ -57,7 +66,7 @@ export const Second = () => {
                   {user.first_name} {user.last_name}
                 </h5>
                 <p className="card-text">
-                  Последний визит: {`${!!user.last_active ? user.last_active : 'очень давно :('}`}
+                  Последний визит: {`${!!user.last_login ? user.last_login : 'очень давно :('}`}
                 </p>
                 <p className="card-text">
                   {`${user.is_active ? 'Активен' : 'не активен'}`}

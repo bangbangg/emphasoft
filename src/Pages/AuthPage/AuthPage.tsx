@@ -2,19 +2,38 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { showAlert, userAuth } from '../../Actions/actions';
-import { Alert } from '../../Components/Alert/Alert';
+import { AlertMessage } from '../../Components/Alert/Alert';
+import { IAlert, stateType } from '../../typesTS/storeTypes';
 
 export const AuthPage = () => {
-
   const dispatch = useDispatch();
-  const alert = useSelector((state) => state.alert.alertStatus);
 
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
+  const { alertStatus } = useSelector(
+    ({alert}:stateType<IAlert>) => alert
+  );
+
+  const [login, setLogin] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const enterApp = (event: React.MouseEvent) => {
+    event.preventDefault();
+    dispatch(userAuth(login.trim(), password.trim()));
+    dispatch(showAlert());
+    setLogin('');
+    setPassword('');
+  }
+
+  const changeLoginHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLogin(event.target.value)
+  }
+
+  const changePasswordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value)
+  }
 
   return (
     <div className="flex backGround">
-      {!!alert && <Alert />}
+      {!!alertStatus && <AlertMessage />}
       <div className="position">
         <div className="ribbon" />
         <div className="login">
@@ -28,7 +47,7 @@ export const AuthPage = () => {
                   className="authInput"
                   type="mail"
                   placeholder="Логин"
-                  onChange={(ev) => setLogin(ev.target.value)}
+                  onChange={changeLoginHandler}
                 />
               </div>
               <div className="blockinput">
@@ -38,19 +57,13 @@ export const AuthPage = () => {
                   className="authInput"
                   type="password"
                   placeholder="Пароль"
-                  onChange={(ev) => setPassword(ev.target.value)}
+                  onChange={changePasswordHandler}
                 />
               </div>
             </div>
             <button
               className="authBtn"
-              onClick={(ev) => {
-                ev.preventDefault();
-                dispatch(userAuth(login.trim(), password.trim()));
-                dispatch(showAlert());
-                setLogin('');
-                setPassword('');
-              }}
+              onClick={enterApp}
             >
               Вход
             </button>

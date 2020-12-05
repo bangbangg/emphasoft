@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Alert } from '../../Components/Alert/Alert';
+import { AlertMessage } from '../../Components/Alert/Alert';
 import { showAlert, newUser } from '../../Actions/actions';
+import { IAlert, stateType, IApp } from '../../typesTS/storeTypes';
 
 export const Main = () => {
-  const [newUsername, setNewUsername] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [newFirstName, setNewFirstname] = useState('');
-  const [newLastName, setNewLastname] = useState('');
+  const { Alert } = useSelector(
+    ({alert}:stateType<IAlert>) => alert
+  );
 
-  const [nameError, setNameError] = useState('');
-  const [lastNameError, setLastNameError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [usernameError, setUsernameError] = useState('');
+  const { token } = useSelector(
+    ({app}:stateType<IApp>) => app
+  );
 
-  const alert = useSelector((state) => state.alert.Alert);
   const dispatch = useDispatch();
 
-  const lastnameAlertStyle = (newLastName.length)? "small alertTextRed" : "small alertTextGreen";
-  const nameAlertStyle = (newFirstName.length)? "small alertTextRed" : "small alertTextGreen";
-  const passwordAlertStyle = (newPassword.length)? "small alertTextRed" : "small alertTextGreen";
-  const usernameAlertStyle = (newUsername.length)? "small alertTextRed" : "small alertTextGreen";
+  const [newUsername, setNewUsername] = useState<string>('');
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [newFirstName, setNewFirstname] = useState<string>('');
+  const [newLastName, setNewLastname] = useState<string>('');
+
+  const [nameError, setNameError] = useState<string>('');
+  const [lastNameError, setLastNameError] = useState<string>('');
+  const [passwordError, setPasswordError] = useState<string>('');
+  const [usernameError, setUsernameError] = useState<string>('');
+
+  const lastnameAlertStyle:string = (newLastName.length)? "small alertTextRed" : "small alertTextGreen";
+  const nameAlertStyle:string = (newFirstName.length)? "small alertTextRed" : "small alertTextGreen";
+  const passwordAlertStyle:string = (newPassword.length)? "small alertTextRed" : "small alertTextGreen";
+  const usernameAlertStyle:string = (newUsername.length)? "small alertTextRed" : "small alertTextGreen";
 
   useEffect(() => {
     if(newFirstName.length===0){
@@ -73,9 +81,30 @@ export const Main = () => {
     }
   }, [newPassword]);
 
+  const changeNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewFirstname(event.target.value)
+  }
+
+  const changeLastnameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewLastname(event.target.value)
+  }
+
+  const changeUsernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewUsername(event.target.value)
+  }
+
+  const changePasswordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewPassword(event.target.value)
+  }
+
+  const dataConfirm = () => {
+    dispatch(newUser(newUsername, newPassword, newFirstName, newLastName, token));
+    dispatch(showAlert());
+  }
+
   return (
     <div className="main">
-    {alert && <Alert className="position"/>}
+    {Alert && <AlertMessage />}
       <h1 className="main_header">
         Форма регистрации
       </h1>
@@ -88,7 +117,7 @@ export const Main = () => {
               className="form-control"
               placeholder="Имя"
               value={newFirstName}
-              onChange={(ev)=>setNewFirstname(ev.target.value)}
+              onChange={changeNameHandler}
             />
             <div className="small">от 1 до 30 символов</div>
             {nameError && <div className={nameAlertStyle}>{nameError}</div>}
@@ -99,7 +128,7 @@ export const Main = () => {
               className="form-control"
               placeholder="Фамилия"
               value={newLastName}
-              onChange={(ev)=>setNewLastname(ev.target.value)}
+              onChange={changeLastnameHandler}
             />
             <div className="small">от 1 до 150 символов</div>
             {lastNameError && <div className={lastnameAlertStyle}>{lastNameError}</div>}
@@ -112,7 +141,7 @@ export const Main = () => {
               className="form-control"
               placeholder="Логин (username)"
               value={newUsername}
-              onChange={(ev)=>setNewUsername(ev.target.value)}
+              onChange={changeUsernameHandler}
             />
             <div className="small">от 1 до 150 символов( допустимые символы a-z @ . + - _ ) </div>
             {usernameError && <div className={usernameAlertStyle}>{usernameError}</div>}
@@ -125,7 +154,7 @@ export const Main = () => {
               className="form-control"
               placeholder="Пароль"
               value={newPassword}
-              onChange={(ev)=>setNewPassword(ev.target.value)}
+              onChange={changePasswordHandler}
               />
               <div className="small">от 8 до 128 символов (можно использовать только англ.буквы)</div>
               {passwordError && <div className={passwordAlertStyle}>{passwordError}</div>}
@@ -135,10 +164,7 @@ export const Main = () => {
       <button
         type="button"
         className="btn btn-success top"
-        onClick={() => {
-          dispatch(newUser(newUsername, newPassword, newFirstName, newLastName));
-          dispatch(showAlert());
-        }}
+        onClick={dataConfirm}
       >
         Подтвердить данные
       </button>
