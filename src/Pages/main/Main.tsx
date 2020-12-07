@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { AlertMessage } from '../../Components/Alert/Alert';
 import { showAlert, newUser } from '../../Actions/actions';
 import { IAlert, stateType, IApp } from '../../typesTS/storeTypes';
 
 export const Main = () => {
+  const history = useHistory();
   const { Alert } = useSelector(
     ({alert}:stateType<IAlert>) => alert
   );
 
   const { token } = useSelector(
     ({app}:stateType<IApp>) => app
+  );
+
+  const { alertStatus } = useSelector(
+    ({alert}:stateType<IAlert>) => alert
   );
 
   const dispatch = useDispatch();
@@ -80,6 +86,13 @@ export const Main = () => {
       setPasswordError('')
     }
   }, [newPassword]);
+
+  useEffect(() => {
+    if(alertStatus.includes('Пользователь успешно создан')){
+      setTimeout(() =>
+        history.push('/usersList'), 1000);
+    }
+  }, [alertStatus, history]);
 
   const changeNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewFirstname(event.target.value)
