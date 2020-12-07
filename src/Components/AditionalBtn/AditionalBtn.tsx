@@ -40,6 +40,16 @@ export const AditionalBtn = () => {
     setSearch(event.target.value)
   }
 
+  const keyPressHandler = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      dispatch(
+        sortUsers(users.filter((item) =>
+          (item.username.toLowerCase().includes(search.toLowerCase())))),
+      );
+      window.location.reload();
+    }
+  }
+
   return (
     <div className="addButtons">
       <div className="buttonsRow">
@@ -67,6 +77,7 @@ export const AditionalBtn = () => {
             aria-label="Search"
             value={search}
             onChange={changeHandler}
+            onKeyPress={keyPressHandler}
           />
           <button
             className="btn btn-outline-success my-2 my-sm-0 mwForm"
