@@ -19,12 +19,10 @@ export const AditionalBtn = () => {
 
   const sortMin = () => {
     dispatch(sortUsers(sorted.sort((a, b) => a.id > b.id ? 1 : -1)));
-    window.location.reload();
   }
 
   const sortMax = () => {
     dispatch(sortUsers(sorted.sort((a, b) => a.id > b.id ? -1 : 1)));
-    window.location.reload();
   }
 
   const searchUsers = (event: React.MouseEvent) => {
@@ -33,7 +31,6 @@ export const AditionalBtn = () => {
       sortUsers(users.filter((item) =>
         (item.username.toLowerCase().includes(search.toLowerCase())))),
     );
-    window.location.reload();
   }
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +43,6 @@ export const AditionalBtn = () => {
         sortUsers(users.filter((item) =>
           (item.username.toLowerCase().includes(search.toLowerCase())))),
       );
-      window.location.reload();
     }
   }
 

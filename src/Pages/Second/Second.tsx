@@ -22,6 +22,8 @@ export const Second = () => {
     ({modal}:stateType<IModal>) => modal
   );
 
+  const [newArr, setNewArr] = useState<IResponce[]>(sorted);
+
   const toggle = !modal;
 
   useEffect(() => {
@@ -33,6 +35,10 @@ export const Second = () => {
       document.body.style.overflowY="visible";
     }
   }, [modal]);
+
+  useEffect(() => {
+    setNewArr(sorted);
+  },[sorted])
 
   return (
     <div className="stndrt">
@@ -47,7 +53,7 @@ export const Second = () => {
         {!sorted.length &&
           <div className="noResults">К сожаланию, ничего не найдено</div>
         }
-        {sorted.map((user) => {
+        {newArr.map((user) => {
           return (
             <div
               className="card text-dark border-info mb-3 aditional"
