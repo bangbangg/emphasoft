@@ -116,13 +116,13 @@ export const Main = () => {
   }
 
   return (
-    <div className="main">
+    <article className="main">
     {Alert && <AlertMessage />}
       <h1 className="main_header">
         Форма регистрации
       </h1>
 
-      <form className="adaptive_form">
+      <form className="main__adaptive-form">
         <div className="row top">
           <div className="col">
             <input
@@ -181,6 +181,6 @@ export const Main = () => {
       >
         Подтвердить данные
       </button>
-    </div>
+    </article>
   );
 };

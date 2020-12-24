@@ -41,17 +41,18 @@ export const Second = () => {
   },[sorted])
 
   return (
-    <div className="stndrt">
+    <section className="user-list">
+      <h2 className="visually-hidden">Список пользователей</h2>
       {modal && modalUser && <Modal
         userName={modalUser.username}
         lastName={modalUser.last_name}
         firstName={modalUser.first_name}
         />
       }
-      <ul className="users_List">
+      <ul className="users-list__container">
         <AditionalBtn />
         {!sorted.length &&
-          <div className="noResults">К сожаланию, ничего не найдено</div>
+          <div className="users-list__search__no-result">К сожаланию, ничего не найдено</div>
         }
         {newArr.map((user) => {
           return (
@@ -82,6 +83,6 @@ export const Second = () => {
           );
         })}
       </ul>
-    </div>
+    </section>
   );
 };

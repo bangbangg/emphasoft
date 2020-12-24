@@ -1,7 +1,7 @@
 @import '../../Styles/media';
 @import '../../Styles/mixins';
 
-.addButtons {
+.search-field {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   width: 100%;
   margin: 20px auto;
 
-  .buttonsRow {
+  .search-field__sort-buttons {
     width:500px;
     display:flex;
     justify-content: space-between;
@@ -41,7 +41,7 @@
       }
     }
   }
-  .inputRow {
+  .search-field__input-search {
     width:500px;
     display:flex;
     justify-content: center;

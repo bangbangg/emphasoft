@@ -33,7 +33,8 @@ export const NavBar:React.FC = () => {
   }
 
   return (
-    <div className="Nav_container">
+    <nav className="nav-container">
+      <h2 className="visually-hidden">Навигация</h2>
       <button
         type="button"
         className="btn btn-info mgn btnSz"
@@ -57,6 +58,6 @@ export const NavBar:React.FC = () => {
           Пользователи
         </button>
       </div>
-    </div>
+    </nav>
   );
 };

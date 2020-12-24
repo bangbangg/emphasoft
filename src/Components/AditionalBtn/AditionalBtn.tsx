@@ -47,8 +47,9 @@ export const AditionalBtn = () => {
   }
 
   return (
-    <div className="addButtons">
-      <div className="buttonsRow">
+    <section className="search-field">
+      <h2 className="visually-hidden">Поиск и сортировка</h2>
+      <div className="search-field__sort-buttons">
         <button
           type="button"
           className="btn btn-primary active mgn mw"
@@ -64,7 +65,7 @@ export const AditionalBtn = () => {
           соритровать по ID (max  min)
         </button>
       </div>
-      <div className="inputRow">
+      <div className="search-field__input-search">
         <form className="form-inline my-2 my-lg-0">
           <input
             className="form-control mr-sm-2 mwForm"
@@ -84,6 +85,6 @@ export const AditionalBtn = () => {
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };

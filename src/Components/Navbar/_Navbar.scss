@@ -1,7 +1,7 @@
 @import '../../Styles/mixins';
 @import '../../Styles/media';
 
-.Nav_container {
+.nav-container {
   position: absolute;
   @include auth(flex, 100%, 50px, #e9e9e9, 0 auto, 5px);
 	justify-content: space-between;
@@ -10,6 +10,8 @@
   border-bottom:1px solid gray;
   box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
   z-index: 35;
+  font-family: Muller;
+  font-weight: 400;
 
   .mgn {
     margin:5px 5px;

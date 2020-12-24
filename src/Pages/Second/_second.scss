@@ -1,14 +1,14 @@
 @import '../../Styles/media';
 @import '../../Styles/mixins';
 
-.stndrt {
+.user-list {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   border:3px;
   height: 100%;
 }
-.users_List {
+.users-list__container {
   @include DsAiFd(flex, center, row);
   padding-top: 90px;
   margin: 0 auto;
@@ -27,7 +27,7 @@
   @include _767{
     max-width: none;
   }
-  .noResults {
+  .users-list__search__no-result {
     @include WdHgPtFz(500px, 400px, 120px, 30px);
     margin: 50px auto;
     background-image: url(../../Images/smile-bad.svg);

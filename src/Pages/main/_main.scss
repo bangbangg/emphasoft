@@ -14,7 +14,8 @@
   .main_header {
     font-size: 40px;
     margin-top: 90px;
-    font-family: $font;
+    font-family: Muller;
+    font-weight: 500;
 
     @include _1200{
       font-size: 35px;
@@ -30,7 +31,7 @@
     }
   }
 
-  .adaptive_form {
+  .main__adaptive-form {
     @include MwMhFz(700px, 600px, 15px);
     margin-bottom: 40px;
     padding:0 10px;

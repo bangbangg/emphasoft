@@ -13,7 +13,7 @@ export const Modal:React.FC<IModalProps> = ({userName, lastName, firstName}) => 
 const  dispatch = useDispatch();
 
 const ModalHandler = (event: React.MouseEvent) => {
-  if((event.target as Element).className ==="popup_body") {
+  if((event.target as Element).className ==="popup-body") {
     dispatch(setModal(false));
   };
 }
@@ -24,13 +24,13 @@ const ModalHandler = (event: React.MouseEvent) => {
       onClick={ModalHandler}
     >
       <div
-        className="popup_bg"
+        className="popup-bg"
       />
-      <div className="popup_body">
-        <div className="popup_content">
-          <div className="popup_content_header">
+      <div className="popup-body">
+        <div className="popup-content">
+          <div className="popup-content__header">
             <span
-              className="popup_close"
+              className="popup-content__close"
               onClick={() => {
                 dispatch(setModal(false));
               }}
@@ -38,16 +38,16 @@ const ModalHandler = (event: React.MouseEvent) => {
               X
             </span>
           </div>
-          <div className="popup_content_body">
-            <div className="modal_photo" />
-            <div className="modal_content_info">
-              <div className="modal_info_nickname">
+          <div className="popup-content__body">
+            <div className="popup-content__photo" />
+            <div className="popup-content__info">
+              <div className="popup-content__nickname">
                 Никнейм:  {userName}
               </div>
-              <div className="modal_info_name">
+              <div className="popup-content__name">
                 Имя:  {firstName}
               </div>
-              <div className="modal_info_name">
+              <div className="popup-content__name">
                 Фамилия:  {lastName}
               </div>
             </div>

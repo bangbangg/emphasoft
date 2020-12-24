@@ -7,6 +7,39 @@
 @import '../Components/AditionalBtn/AditionalBtn';
 @import '../Components/Modal/modal';
 
+
+@font-face {
+  font-family: "Muller";
+  src: url("./fonts/MullerBold.woff2") format("woff2"),
+  url("./fonts/MullerBold.woff") format("woff");
+  font-style: bold;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Muller";
+  src: url("./fonts/MullerLight.woff2") format("woff2"),
+  url("./fonts/MullerLight.woff") format("woff");
+  font-style: lite;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Muller";
+  src: url("./fonts/MullerMedium.woff2") format("woff2"),
+  url("./fonts/MullerMedium.woff") format("woff");
+  font-style: medium;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Muller";
+  src: url("./fonts/MullerRegular.woff2") format("woff2"),
+  url("./fonts/MullerRegular.woff") format("woff");
+  font-style: regular;
+  font-weight: 400;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +53,7 @@
 }
 
 
-.backGround {
+.background {
   box-sizing: border-box;
   width:100vw;
   height: 100vh;
@@ -31,4 +64,15 @@
   font-family:'Open Sans', Arial, sans-serif;
   font-size: 1em;
   border:3px;
+}
+
+.visually-hidden {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
 }

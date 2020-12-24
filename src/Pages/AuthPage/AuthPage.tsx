@@ -32,29 +32,30 @@ export const AuthPage = () => {
   }
 
   return (
-    <div className="flex backGround">
+    <article className="auth-container background">
+      <h2 className="visually-hidden">Авторизация</h2>
       {!!alertStatus && <AlertMessage />}
       <div className="position">
         <div className="ribbon" />
-        <div className="login">
-          <h1 className="authHead">Введите свои данные</h1>
-          <form action="login">
+        <div className="auth-container__login">
+          <h1 className="auth-header">Введите свои данные</h1>
+          <form action="auth-container__login">
             <div className="input">
-              <div className="blockinput">
+              <div className="block-input">
                 <i className="icon-envelope-alt" />
                 <input
                   value={login}
-                  className="authInput"
+                  className="auth-input"
                   type="mail"
                   placeholder="Логин"
                   onChange={changeLoginHandler}
                 />
               </div>
-              <div className="blockinput">
+              <div className="block-input">
                 <i className="icon-unlock" />
                 <input
                   value={password}
-                  className="authInput"
+                  className="auth-input"
                   type="password"
                   placeholder="Пароль"
                   onChange={changePasswordHandler}
@@ -62,7 +63,7 @@ export const AuthPage = () => {
               </div>
             </div>
             <button
-              className="authBtn"
+              className="auth-button"
               onClick={enterApp}
             >
               Вход
@@ -70,6 +71,6 @@ export const AuthPage = () => {
           </form>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
