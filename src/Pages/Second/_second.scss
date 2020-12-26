@@ -35,6 +35,7 @@
     background-repeat: no-repeat;
     background-position: center;
     text-align: center;
+    color: #10130f;
 
     @include _1200{
       @include WdHgPtFz(400px, 300px, 110px, 28px);

@@ -52,7 +52,7 @@ export const Second = () => {
       <ul className="users-list__container">
         <AditionalBtn />
         {!sorted.length &&
-          <div className="users-list__search__no-result">К сожаланию, ничего не найдено</div>
+          <div className="users-list__search__no-result">К сожалению, ничего не найдено</div>
         }
         {newArr.map((user) => {
           return (

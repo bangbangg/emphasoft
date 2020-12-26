@@ -13,14 +13,14 @@
 
 **cтек технологий**:
 
-Javascript  
-React  
-Redux  
-React Bootstrap  
-Typescript  
-SCSS  
-Сборка Wepback  
-Анализ кода ESLint  
+Javascript
+React
+Redux
+React Bootstrap
+Typescript
+SCSS
+Сборка Wepback
+Анализ кода ESLint
 
 
 

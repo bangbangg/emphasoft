@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import ReactDom from 'react-dom';
 import { useDispatch } from 'react-redux';
 
 import { setModal } from '../../Actions/actions';
@@ -13,12 +14,12 @@ export const Modal:React.FC<IModalProps> = ({userName, lastName, firstName}) => 
 const  dispatch = useDispatch();
 
 const ModalHandler = (event: React.MouseEvent) => {
-  if((event.target as Element).className ==="popup-body") {
+  if((event.target as Element).className ==="popup-bg") {
     dispatch(setModal(false));
   };
 }
 
-  return (
+  return ReactDom.createPortal(
     <div
       className="popup"
       onClick={ModalHandler}
@@ -54,6 +55,7 @@ const ModalHandler = (event: React.MouseEvent) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('portal') as HTMLElement
   )
 }

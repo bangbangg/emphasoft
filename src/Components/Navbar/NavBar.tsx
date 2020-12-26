@@ -42,7 +42,7 @@ export const NavBar:React.FC = () => {
       >
         Выйти
       </button>
-      <div>
+      <div className="buttons-section">
         <button
           type="button"
           className="btn btn-info mgn btnSz"
