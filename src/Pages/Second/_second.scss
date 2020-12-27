@@ -51,9 +51,6 @@
     width:350px;
     min-height:260px;
     margin:0 auto;
-    &:hover {
-      border: 3px solid rgb(40, 204, 40) !important;
-    }
 
     @include _1200{
       width: 330px;
@@ -64,5 +61,11 @@
     @include _767{
       width: 250px;
     }
+  }
+}
+
+@media (hover: hover) {
+  .aditional:hover {
+    border: 3px solid rgb(40, 204, 40) !important;
   }
 }

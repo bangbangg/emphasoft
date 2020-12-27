@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -8,6 +8,7 @@ export const NavBar:React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [burger, setBurger] = useState<string>("burger-menu__item__disabled")
   function MainLink() {
     history.push('/');
   }
@@ -33,7 +34,8 @@ export const NavBar:React.FC = () => {
   }
 
   return (
-    <nav className="nav-container">
+    <div>
+    <nav className="nav-container-desktop">
       <h2 className="visually-hidden">Навигация</h2>
       <button
         type="button"
@@ -59,5 +61,55 @@ export const NavBar:React.FC = () => {
         </button>
       </div>
     </nav>
+
+    <div className={burger}>
+      <ul className = "burger-menu">
+        <h2 className = "burger-menu__header">
+          Меню
+        </h2>
+        <li
+          className="burger-menu__item"
+          onClick={(ev)=>{
+            goToMain(ev);
+            setBurger("burger-menu__item__disabled");
+          }}
+        >
+          Страница регистрации
+        </li>
+        <li
+          className="burger-menu__item"
+          onClick={(ev)=>{
+            goToUsers(ev);
+            setBurger("burger-menu__item__disabled");
+          }}
+        >
+          Список пользователей
+        </li>
+        <div
+          className="burger-menu__close"
+          onClick = {()=>setBurger("burger-menu__item__disabled")}
+        >
+          &#10005;
+        </div>
+      </ul>
+    </div>
+
+    <nav className="nav-container__mobile">
+      <button
+        className="mobile__exit-btn"
+        type="button"
+        onClick={EscapeChangeHanlder}
+      >
+        Выйти
+      </button>
+      <button
+        type="button"
+        className="mobile__burger-btn"
+        onClick = {()=>setBurger("burger-menu__item__enabled")}
+      >
+        &#9776;
+      </button>
+    </nav>
+    </div>
   );
 };

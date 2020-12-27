@@ -1,3 +1,10 @@
+
+@mixin _1200_min {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
 @mixin _1200 {
   @media (max-width: 1200px) {
     @content;
