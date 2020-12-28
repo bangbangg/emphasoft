@@ -5,22 +5,22 @@
 
 :white_check_mark: Реализовано отображение списка пользователей  
 с фильрацией по username и сортировкой по ID  
-:white_check_mark: Создание пользователя с валидацией 
+:white_check_mark: Создание пользователя с валидацией  
 
-Поэтапно переписывается на ТайпСкрипт 
+Поэтапно переписывается на ТайпСкрипт  
 
 [**Работа выложена на хостинг**](http://u96064.test-handyhost.ru/Home)  
 
-**cтек технологий**:
+**cтек технологий**:  
 
-Javascript
-React
-Redux
-React Bootstrap
-Typescript
-SCSS
-Сборка Wepback
-Анализ кода ESLint
+Javascript  
+React  
+Redux  
+React Bootstrap  
+Typescript  
+SCSS  
+Сборка Wepback  
+Анализ кода ESLint  
 
 
 

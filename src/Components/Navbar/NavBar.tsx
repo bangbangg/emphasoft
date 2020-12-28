@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -8,7 +8,9 @@ export const NavBar:React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [burger, setBurger] = useState<string>("burger-menu__item__disabled")
+  const [mobile_visibility, setMobile_visibility] = useState<string>("mobile-nav");
+  const [burger, setBurger] = useState<string>("burger-menu__item__disabled");
+
   function MainLink() {
     history.push('/');
   }
@@ -32,6 +34,14 @@ export const NavBar:React.FC = () => {
     event.preventDefault();
     SortedLink();
   }
+
+  useEffect(() => {
+    if (burger==="burger-menu__item__enabled") {
+      setMobile_visibility("mobile-nav__hidden");
+    } else {
+      setMobile_visibility("mobile-nav");
+    }
+  }, [burger]);
 
   return (
     <div>
@@ -93,23 +103,24 @@ export const NavBar:React.FC = () => {
         </div>
       </ul>
     </div>
-
-    <nav className="nav-container__mobile">
-      <button
-        className="mobile__exit-btn"
-        type="button"
-        onClick={EscapeChangeHanlder}
-      >
-        Выйти
-      </button>
-      <button
-        type="button"
-        className="mobile__burger-btn"
-        onClick = {()=>setBurger("burger-menu__item__enabled")}
-      >
-        &#9776;
-      </button>
-    </nav>
+    <div  className={mobile_visibility}>
+      <nav className="nav-container__mobile">
+        <button
+          className="mobile__exit-btn"
+          type="button"
+          onClick={EscapeChangeHanlder}
+        >
+          Выйти
+        </button>
+        <button
+          type="button"
+          className="mobile__burger-btn"
+          onClick = {()=>setBurger("burger-menu__item__enabled")}
+        >
+          &#9776;
+        </button>
+      </nav>
+    </div>
     </div>
   );
 };
