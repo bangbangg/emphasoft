@@ -12,8 +12,8 @@ export const router = (isAuthorized:boolean) => {
     return (
       <Router>
         <Switch>
-          <Route path="/Home" exact component={AuthPage} />
-          <Redirect to="/Home" />
+          <Route path="/Auth" exact component={AuthPage} />
+          <Redirect to="/Auth" />
         </Switch>
       </Router>
     );

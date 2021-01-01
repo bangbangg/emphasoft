@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { logoutUser } from '../../Actions/actions';
+import { logoutUser, firstTenUsers } from '../../Actions/actions';
 
 export const NavBar:React.FC = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,10 @@ export const NavBar:React.FC = () => {
       <button
         type="button"
         className="btn btn-info mgn btnSz"
-        onClick={EscapeChangeHanlder}
+        onClick={(ev) => {
+          EscapeChangeHanlder(ev);
+          dispatch(firstTenUsers());
+        }}
       >
         Выйти
       </button>
@@ -108,7 +111,10 @@ export const NavBar:React.FC = () => {
         <button
           className="mobile__exit-btn"
           type="button"
-          onClick={EscapeChangeHanlder}
+          onClick={(ev) => {
+            EscapeChangeHanlder(ev);
+            dispatch(firstTenUsers());
+          }}
         >
           Выйти
         </button>

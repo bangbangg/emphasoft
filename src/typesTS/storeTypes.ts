@@ -8,6 +8,7 @@ export interface IApp {
   users: IResponce[],
   sorted: IResponce[],
   search: IResponce[],
+  usersOnPage: number,
 }
 
 export interface IModal {

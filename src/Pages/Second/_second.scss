@@ -69,3 +69,44 @@
     border: 3px solid rgb(40, 204, 40) !important;
   }
 }
+
+.users-button__container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .users-button {
+    width:200px;
+    height: 50px;
+    font-size: 18px;
+    visibility: visible;
+
+    @include _1200{
+      width:200px;
+      height: 50px;
+      font-size: 18px;
+    }
+    @include _992{
+      width:180px;
+      height: 45px;
+      font-size: 16px;
+    }
+    @include _767{
+      width:150px;
+      height: 40px;
+      font-size: 14px;
+    }
+    @include _450{
+      width:120px;
+      height: 35px;
+      font-size: 12px;
+    }
+  }
+
+  .users-button__none {
+    width:200px;
+    height: 50px;
+    visibility: hidden;
+  }
+}

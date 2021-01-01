@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { AditionalBtn } from '../../Components/AditionalBtn/AditionalBtn';
-import { setModal } from '../../Actions/actions';
+import { setModal, showMoreUsers } from '../../Actions/actions';
 import { Modal } from '../../Components/Modal/modal';
 
 import { IApp, stateType, IModal, IResponce } from '../../typesTS/storeTypes';
@@ -11,10 +11,15 @@ import { IApp, stateType, IModal, IResponce } from '../../typesTS/storeTypes';
 export const Second = () => {
 
   const [modalUser, setModalUser] = useState<IResponce | null>(null);
+  const [button, setButton] = useState<string>('users-button')
 
   const dispatch = useDispatch();
 
   const { sorted } = useSelector(
+    ({app}:stateType<IApp>) => app
+  );
+
+  const { usersOnPage } = useSelector(
     ({app}:stateType<IApp>) => app
   );
 
@@ -23,6 +28,8 @@ export const Second = () => {
   );
 
   const [newArr, setNewArr] = useState<IResponce[]>(sorted);
+
+  const Array = newArr.slice(0, usersOnPage);
 
   const toggle = !modal;
 
@@ -40,6 +47,13 @@ export const Second = () => {
     setNewArr(sorted);
   },[sorted])
 
+
+  useEffect(() => {
+    if (newArr.length <= usersOnPage)
+      {setButton('users-button__none');}
+    else { setButton('users-button') };
+  },[usersOnPage, newArr.length])
+
   return (
     <section className="user-list">
       <h2 className="visually-hidden">Список пользователей</h2>
@@ -54,7 +68,7 @@ export const Second = () => {
         {!sorted.length &&
           <div className="users-list__search__no-result">К сожалению, ничего не найдено</div>
         }
-        {newArr.map((user) => {
+        {Array.map((user) => {
           return (
             <div
               className="card text-dark border-info mb-3 aditional"
@@ -82,6 +96,16 @@ export const Second = () => {
             </div>
           );
         })}
+        <div className="users-button__container">
+          <button
+            className={button}
+            onClick={()=>{
+              dispatch(showMoreUsers());
+            }}
+          >
+            Показать еще
+          </button>
+        </div>
       </ul>
     </section>
   );

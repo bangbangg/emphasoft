@@ -1,6 +1,6 @@
 import {
-  HIDE_ALERT, SHOW_ALERT, LOGIN, LOGOUT, ALERT_STATUS,
-  DELETE_ALERT, USERS_LIST, SORTED_USERS, MODAL
+  HIDE_ALERT, SHOW_ALERT, LOGIN, LOGOUT, ALERT_STATUS, TEN_USERS,
+  DELETE_ALERT, USERS_LIST, SORTED_USERS, MODAL, SHOW_MORE
 } from './types';
 
 import { IResponce } from '../typesTS/storeTypes';
@@ -53,8 +53,16 @@ interface ISortedUsers {
   sortUsers: IResponce[],
 }
 
+interface IShowMore {
+  type: typeof  SHOW_MORE,
+}
 
-export type AppActionTypes = ILogin | ILogout | ISortedUsers | IUsersList ;
+interface ITenUsers {
+  type: typeof TEN_USERS,
+}
+
+
+export type AppActionTypes = ILogin | ILogout | ISortedUsers | IUsersList | IShowMore | ITenUsers;
 
 // global action type
 

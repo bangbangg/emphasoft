@@ -1,6 +1,6 @@
 import {
-  HIDE_ALERT, SHOW_ALERT, LOGIN, LOGOUT, ALERT_STATUS,
-  DELETE_ALERT, USERS_LIST, SORTED_USERS, MODAL
+  HIDE_ALERT, SHOW_ALERT, LOGIN, LOGOUT, ALERT_STATUS, TEN_USERS,
+  DELETE_ALERT, USERS_LIST, SORTED_USERS, MODAL, SHOW_MORE
 } from './types';
 import { Dispatch } from 'redux';
 
@@ -58,6 +58,18 @@ export function loginUser(token: string):AppActionTypes {
   return {
     type: LOGIN,
     token: token
+  }
+}
+
+export function showMoreUsers():AppActionTypes {
+  return {
+    type: SHOW_MORE,
+  }
+}
+
+export function firstTenUsers():AppActionTypes {
+  return {
+    type: TEN_USERS,
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { sortUsers } from '../../Actions/actions';
+import { sortUsers, firstTenUsers } from '../../Actions/actions';
 import { IApp, stateType } from '../../typesTS/storeTypes';
 
 export const AditionalBtn = () => {
@@ -43,6 +43,7 @@ export const AditionalBtn = () => {
         sortUsers(users.filter((item) =>
           (item.username.toLowerCase().includes(search.toLowerCase())))),
       );
+      dispatch(firstTenUsers());
     }
   }
 
@@ -79,7 +80,10 @@ export const AditionalBtn = () => {
           <button
             className="btn btn-outline-success my-2 my-sm-0 mwForm"
             type="button"
-            onClick={searchUsers}
+            onClick={(ev) => {
+              searchUsers(ev);
+              dispatch(firstTenUsers());
+            }}
           >
             Поиск
           </button>

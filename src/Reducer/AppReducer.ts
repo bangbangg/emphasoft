@@ -1,5 +1,5 @@
 import {
-  LOGIN, LOGOUT, USERS_LIST, SORTED_USERS,
+  LOGIN, LOGOUT, USERS_LIST, SORTED_USERS, SHOW_MORE, TEN_USERS
 } from '../Actions/types';
 
 import { IApp } from '../typesTS/storeTypes';
@@ -10,6 +10,7 @@ const initialState:IApp = {
   users: [],
   sorted: [],
   search: [],
+  usersOnPage: 12,
 };
 
 export const appReducer = (state = initialState, action:AppActionTypes):IApp => {
@@ -22,6 +23,10 @@ export const appReducer = (state = initialState, action:AppActionTypes):IApp => 
       return { ...state, users: action.users, sorted: action.users };
     case SORTED_USERS:
       return { ...state, sorted: action.sortUsers };
+    case TEN_USERS:
+      return { ...state, usersOnPage: 12 };
+    case SHOW_MORE:
+      return { ...state, usersOnPage: state.usersOnPage + 12 };
     default:
       return state;
   }
